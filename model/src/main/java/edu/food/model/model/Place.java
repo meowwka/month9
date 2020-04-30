@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Table(name="places")
 public class Place {
-//    @javax.persistence.Id
+    @javax.persistence.Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
