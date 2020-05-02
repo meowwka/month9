@@ -1,4 +1,4 @@
-use `edufood`;
+use `handmade`;
 
 CREATE TABLE `places` (
     `id` INT auto_increment NOT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE `places` (
     `image` varchar(128) NOT NULL, PRIMARY KEY (`id`)
 );
 
-create table `foods` (
+create table `products` (
     `id` INT auto_increment NOT NULL,
     `name` varchar(128) NOT NULL,
     `image` varchar(128) NOT NULL,

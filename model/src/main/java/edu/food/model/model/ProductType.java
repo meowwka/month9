@@ -7,8 +7,8 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "food_types")
-public class FoodType {
+@Table(name = "product_types")
+public class ProductType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,5 +18,5 @@ public class FoodType {
     private String icon;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
     @OrderBy("name ASC")
-    List<Food> foods;
+    List<Product> products;
 }

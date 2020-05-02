@@ -8,8 +8,8 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PACKAGE) @NoArgsConstructor
 @Entity
-@Table(name = "foods")
-public class Food {
+@Table(name = "products")
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -21,8 +21,8 @@ public class Food {
     private String image;
 
     @ManyToOne
-    @JoinColumn(name = "foodType_id")
-    private FoodType type;
+    @JoinColumn(name = "product_type_id")
+    private ProductType type;
 
     @Column
     private float price;

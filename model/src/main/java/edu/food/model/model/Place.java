@@ -1,10 +1,7 @@
 package edu.food.model.model;
 
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
@@ -28,6 +25,6 @@ public class Place {
     private String image;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "place")
     @OrderBy("name ASC")
-    List<Food> foods;
+    List<Product> products;
 
 }

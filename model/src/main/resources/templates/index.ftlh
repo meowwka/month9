@@ -8,7 +8,7 @@
         <h1>Содержимое страницы</h1>
 
         <ul>
-        <#list foodTypes as ft>
+        <#list productTypes as ft>
             <li>
                 <p>${ft.id} - ${ft.name} - ${ft.icon}</p>
             </li>
