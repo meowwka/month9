@@ -1,5 +1,7 @@
-package com.product.handmade.model;
+package com.product.handmade.Product;
 
+import com.product.handmade.Place.Place;
+import com.product.handmade.ProductType.ProductType;
 import lombok.*;
 
 import javax.persistence.*;
