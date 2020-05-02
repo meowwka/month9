@@ -1,6 +1,6 @@
-package edu.food.model.repo;
+package com.product.handmade.repo;
 
-import edu.food.model.model.Product;
+import com.product.handmade.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProductRepository extends JpaRepository <Product, Integer> {

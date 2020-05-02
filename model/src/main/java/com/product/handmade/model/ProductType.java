@@ -1,4 +1,4 @@
-package edu.food.model.model;
+package com.product.handmade.model;
 
 import lombok.Data;
 

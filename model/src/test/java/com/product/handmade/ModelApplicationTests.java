@@ -1,4 +1,4 @@
-package edu.food.model;
+package com.product.handmade;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

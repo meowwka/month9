@@ -1,6 +1,6 @@
-package edu.food.model.repo;
+package com.product.handmade.repo;
 
-import edu.food.model.model.ProductType;
+import com.product.handmade.model.ProductType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
