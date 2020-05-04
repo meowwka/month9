@@ -16,6 +16,7 @@ public class UserService {
         User u = new User();
         u.setLogin(form.getLogin());
         u.setEmail(form.getEmail());
+        u.setName(form.getName());
         u.setPassword(form.getPassword());
         userRepository.save(u);
     }

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -39,9 +40,17 @@ private final ProductService ps;
             attributes.addFlashAttribute("errors", validationResult.getFieldErrors());
             return "redirect:/registration";
         }
+        us.saveUser(form);
 
 
         return "redirect:/index";
+    }
+
+    @GetMapping("/test")
+    @ResponseBody
+    public  String getTestPage(@Valid UserRegisterForm form){
+        return form.getEmail();
+
     }
 
 
