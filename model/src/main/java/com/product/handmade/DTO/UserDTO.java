@@ -11,11 +11,13 @@ import lombok.*;
 public class UserDTO {
     private int id;
     private String login;
+    private String name;
     private String email;
 
     static UserDTO from(User user) {
         return builder().id(user.getId())
                 .email(user.getEmail())
+                .name(user.getName())
                 .login(user.getLogin())
                 .build();
 
