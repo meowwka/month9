@@ -1,5 +1,8 @@
-package com.product.handmade.User;
+package com.product.handmade.service;
 
+import com.product.handmade.model.User;
+import com.product.handmade.model.UserRegisterForm;
+import com.product.handmade.repo.UserRepo;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

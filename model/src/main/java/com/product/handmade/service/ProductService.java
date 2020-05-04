@@ -1,5 +1,7 @@
-package com.product.handmade.Product;
+package com.product.handmade.service;
 
+import com.product.handmade.DTO.ProductDTO;
+import com.product.handmade.repo.ProductRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -12,7 +14,7 @@ public class ProductService {
 
     private final ProductRepository foodRepository;
 
-    public Page<ProductDTO> getFoods(int id, Pageable pageable) {
+    public Page<ProductDTO> getProducts(int id, Pageable pageable) {
         return foodRepository.findAllByPlaceId(id, pageable)
                 .map(ProductDTO::from);
     }

@@ -1,6 +1,6 @@
-package com.product.handmade.Product;
+package com.product.handmade.controller;
 
-import com.product.handmade.ProductType.ProductTypeRepository;
+import com.product.handmade.repo.ProductTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

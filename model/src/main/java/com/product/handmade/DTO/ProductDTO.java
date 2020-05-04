@@ -1,6 +1,7 @@
-package com.product.handmade.Product;
+package com.product.handmade.DTO;
 
-import com.product.handmade.ProductType.ProductType;
+import com.product.handmade.model.ProductType;
+import com.product.handmade.model.Product;
 import lombok.*;
 
 @Getter

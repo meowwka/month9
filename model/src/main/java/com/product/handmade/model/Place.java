@@ -1,7 +1,6 @@
-package com.product.handmade.Place;
+package com.product.handmade.model;
 
 
-import com.product.handmade.Product.Product;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 

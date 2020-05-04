@@ -1,10 +1,11 @@
-package com.product.handmade.User;
+package com.product.handmade.DTO;
 
+import com.product.handmade.model.User;
 import lombok.*;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder(access = AccessLevel.PRIVATE)
+@Builder(access = AccessLevel.PRIVATE) @ToString
 @Getter
 @Setter
 public class UserDTO {

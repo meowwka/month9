@@ -1,5 +1,6 @@
-package com.product.handmade.ProductType;
+package com.product.handmade.repo;
 
+import com.product.handmade.model.ProductType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
