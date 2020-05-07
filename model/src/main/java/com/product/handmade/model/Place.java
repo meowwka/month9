@@ -31,7 +31,6 @@ public class Place {
     @NotBlank
     @Column(length = 128)
     private String image;
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "place")
     @OrderBy("name ASC")
     List<Product> products;

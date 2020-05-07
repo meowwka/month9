@@ -32,7 +32,7 @@ class PlaceRestController {
         return placeService.getPlace(id);
     }
 
-    @GetMapping("/{id:\\d+}/foods")
+    @GetMapping("/{id:\\d+}/products")
     public List<ProductDTO> getFoods(@PathVariable @Min(5) int id, Pageable pageable) {
         return productService.getProducts(id, pageable).getContent();
     }

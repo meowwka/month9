@@ -1,5 +1,6 @@
 package com.product.handmade.DTO;
 
+import com.product.handmade.model.Place;
 import com.product.handmade.model.ProductType;
 import com.product.handmade.model.Product;
 import lombok.*;
@@ -17,6 +18,7 @@ public class ProductDTO {
     private String image;
     private ProductTypeDTO type;
     private float price;
+    private Place place;
 
     public static ProductDTO from(Product food) {
         return builder()
@@ -25,6 +27,7 @@ public class ProductDTO {
                 .type(ProductTypeDTO.from(food.getType()))
                 .image(food.getImage())
                 .price(food.getPrice())
+//                .place(food.getPlace())
                 .build();
     }
 

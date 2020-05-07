@@ -40,6 +40,7 @@ private final ProductService ps;
                            BindingResult validationResult,
                            RedirectAttributes attributes) {
         attributes.addFlashAttribute("form");
+        attributes.addFlashAttribute("user", form);
 
         if (validationResult.hasFieldErrors()) {
             attributes.addFlashAttribute("errors", validationResult.getFieldErrors());
@@ -53,7 +54,12 @@ private final ProductService ps;
         us.saveUser(form);
 
 
-        return "redirect:/";
+        return "redirect:/successful";
+    }
+
+    @GetMapping("/successful")
+    public String getUser(){
+        return "successful";
     }
 
     @GetMapping("/test")

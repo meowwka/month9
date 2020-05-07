@@ -8,14 +8,22 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProductService {
 
-    private final ProductRepository foodRepository;
+    private final ProductRepository productRepository;
 
     public Page<ProductDTO> getProducts(int id, Pageable pageable) {
-        return foodRepository.findAllByPlaceId(id, pageable)
+        return productRepository.findAllByPlaceId(id, pageable)
                 .map(ProductDTO::from);
     }
+    public List<ProductDTO> findAllProducts() {
+        return productRepository.findAll().stream()
+                .map(ProductDTO::from).collect(Collectors.toList());
+    }
 }
+
