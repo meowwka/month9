@@ -2,7 +2,7 @@
 
 <@main.renderWith title="Handmade">
 
-    <a href="/registration">Registration.</a>
+    <a href="/registration" >Registration.</a>
     <h1>Содержимое страницы</h1>
     <form action="/" class="mb-24" method="post">
         <div  class="z-input z-input_size_normal">
