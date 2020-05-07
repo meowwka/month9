@@ -21,6 +21,12 @@ public class ProductService {
         return productRepository.findAllByPlaceId(id, pageable)
                 .map(ProductDTO::from);
     }
+    public Page<ProductDTO> findByName(String name, Pageable pageable){
+        return productRepository.findAllByNameContains(name,pageable).map(ProductDTO::from);
+    }
+    public Page<ProductDTO> findProducts(Pageable pageable){
+        return productRepository.findAll(pageable).map(ProductDTO::from);
+    }
     public List<ProductDTO> findAllProducts() {
         return productRepository.findAll().stream()
                 .map(ProductDTO::from).collect(Collectors.toList());

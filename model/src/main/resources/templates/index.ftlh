@@ -4,22 +4,21 @@
 
     <a href="/registration">Registration.</a>
     <h1>Содержимое страницы</h1>
-    <form class="mb-24">
+    <form action="/" class="mb-24" method="post">
         <div  class="z-input z-input_size_normal">
             <div class="z-input__field-wrap">
                 <label class="z-input__label">
                     Поиск по названию
                 </label>
                 <div class="z-input__group">
-                    <input  placeholder="" type="text" class="z-input__field">
+                    <input name="name" placeholder="" type="text" class="z-input__field">
+                    <button type="submit" class="btn btn-light" style="">
+                        Search
+                    </button>
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn--depressed zPrimary" style="">
-            <div class="btn__content">
 
-            </div>
-        </button>
     </form>
 
 
@@ -39,6 +38,7 @@
             </div>
         </div>
     </div>
-</#list>
 
+</#list>
+    <#include "partials/pagination.ftlh">
 </@main.renderWith>
