@@ -22,11 +22,11 @@ public class MainController {
     ProductTypeRepository repo;
     private final ProductService productService;
 
-    @GetMapping("/")
-    public String getMainPage(Model model) {
-        model.addAttribute("products", productService.findAllProducts());
-        return "index";
-    }
+//    @GetMapping("/")
+//    public String getMainPage(Model model) {
+//        model.addAttribute("products", productService.findAllProducts());
+//        return "index";
+//    }
 //    @RequestMapping("/")
 //    private String findByName(@RequestParam("name") String name, Pageable pageable){
 //          productService.findByName(name,pageable);

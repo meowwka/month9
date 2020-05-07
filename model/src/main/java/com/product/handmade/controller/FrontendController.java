@@ -43,11 +43,12 @@ public class FrontendController {
         return String.format("%s?page=%s&size=%s", uri, page, size);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public String index(Model model, Pageable pageable, HttpServletRequest uriBuilder) {
         var products = productService.findProducts(pageable);
         var uri = uriBuilder.getRequestURI();
-        constructPageable(products, propertiesService.getDefaultPageSize(), model, uri);
+        var mo = model.addAttribute("products", productService.findAllProducts());
+        constructPageable(products, propertiesService.getDefaultPageSize(), mo, uri);
 
         return "index";
     }
