@@ -1,6 +1,6 @@
 package com.product.handmade.model;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -10,6 +10,9 @@ import javax.validation.constraints.Size;
 @Data
 @Entity
 @Table(name = "users")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,4 +36,13 @@ public class User {
     @Column(length = 15)
     private String password;
 
+    @Column
+    @Builder.Default
+    private boolean enabled = true;
+
+    @NotBlank
+    @Size(min=1, max = 60)
+    @Column(length = 60)
+    @Builder.Default
+    private String role ="USER";
 }
