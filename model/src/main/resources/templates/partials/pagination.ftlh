@@ -10,5 +10,6 @@
     <#else>
         <span class="btn btn-outline-info">Next page</span>
     </#if>
-       <div><a href="/" class="btn btn-outline-info ">Go to the main</a></div>
+        <br><br><br>
+<#--       <div><a href="/" class="btn btn-outline-info ">Go to the main</a></div>-->
 </div>

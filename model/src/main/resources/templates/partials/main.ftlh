@@ -8,7 +8,8 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
         <title>${title}</title>
         <link rel="stylesheet" href="/css/styles.css">
@@ -24,6 +25,21 @@
     и оно появится сразу на всех страницах которые используют
     этот шаблон
     -->
+
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">Handmade</a>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/registration">Registration<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+        </nav>
+        </div>
+    </header>
+
+
 
     <div class="container ">
         <#--
