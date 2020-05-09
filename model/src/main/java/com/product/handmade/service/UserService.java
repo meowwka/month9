@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 public class UserService {
     private UserRepo userRepository;
     private final PasswordEncoder encoder;
@@ -40,8 +40,9 @@ public class UserService {
                 .email(userRegisterForm.getEmail())
                 .name(userRegisterForm.getName())
                 .login(userRegisterForm.getLogin())
-                .password(userRegisterForm.getPassword())
+                .password(encoder.encode(userRegisterForm.getPassword()))
                 .build();
+
         userRepository.save(user);
         return UserDTO.from(user);
     }

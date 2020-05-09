@@ -29,7 +29,7 @@
     <header class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/">Handmade</a>
+            <a class="navbar-brand" href="/main">Handmade</a>
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="/registration">Registration<span class="sr-only">(current)</span></a>
