@@ -4,7 +4,7 @@
 <#-- обрабатываем его, и передаём ему список скриптов, которые необходимо подключить-->
 <@main.renderWith title="Welcome">
 
-    <div class="flex flex-justify-content-center">
+    <div class="flex flex-justify-content-center btn-group-vertical ">
         <a class="btn btn-outline-info" href="/registration"> Регистрация </a>
         <a class="btn btn-outline-info" href="/login"> Войти </a>
         <a class="btn btn-outline-info" href="/successful"> Профиль </a>
@@ -13,7 +13,7 @@
             <#if _csrf??>
                 <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
             </#if>
-            <button class="btn btn-outline-info">Выйти </button>
+            <button class="btn btn-outline-info" style="padding-right: 58px;"> Выйти </button>
         </form>
 
     </div>

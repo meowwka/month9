@@ -31,12 +31,15 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/">Main</a>
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/main">Handmade<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/registration">Registration<span class="sr-only">(current)</span></a>
-                    </li>
+                        <li class="nav-item  ">
+                            <a class="nav-link" href="/main">Handmade</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/registration">Registration</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/successful">Profile</a>
+                        </li>
                 </ul>
         </nav>
         </div>
