@@ -21,7 +21,8 @@
                 <input type="password" class="form-control" name="password" placeholder="password" value="" autofocus>
         </div>
         <div>
-            <button type="submit" class="btn btn-outline-info">Confirm identity</button>
+            <button type="submit" class="btn btn-outline-info">Sign In</button>
+            <a href="/"  class="btn btn-outline-info">Registration</a>
         </div>
     </form>
 </@main.renderWith>

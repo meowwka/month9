@@ -1,4 +1,5 @@
 'use strict';
+window.addEventListener('load', function() {
 
-let email = document.getElementById("email").value;
-console.log(email);
+
+})

@@ -68,7 +68,7 @@ public class FrontendController {
         return "main";
     }
 
-    @GetMapping("/registration")
+    @GetMapping("/")
     public String pageRegisterUser(Model model){
         if(!model.containsAttribute("form")){
             model.addAttribute("form", new UserRegisterForm());
@@ -76,18 +76,18 @@ public class FrontendController {
         return "registration";
     }
 
-    @RequestMapping("/registration")
+    @RequestMapping("/")
     public String register(@Valid UserRegisterForm form,
                            BindingResult validationResult,
                            RedirectAttributes attributes) {
 //        attributes.addFlashAttribute("form");
         if (validationResult.hasFieldErrors()) {
             attributes.addFlashAttribute("errors", validationResult.getFieldErrors());
-            return "redirect:/registration";
+            return "redirect:/";
         }
         if (userService.checkUser(form)) {
             attributes.addFlashAttribute("user", form);
-            return "redirect:/registration";
+            return "redirect:/";
         }
         attributes.addFlashAttribute("user", form);
 

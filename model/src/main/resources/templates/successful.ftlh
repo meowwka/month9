@@ -13,6 +13,13 @@
             <h5 class="card-title">Login: ${user.login!'--login missing--'}</h5>
             <h5 class="card-title">Email: ${user.email!'--email missing--'}</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <form class="flex box-128" action="/logout" method="post">
+                <#if _csrf??>
+                    <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
+                </#if>
+                <button class="btn btn-outline-info "> Выйти </button>
+            </form>
+
         </div>
     </div>
     <#else>
