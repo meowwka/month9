@@ -56,14 +56,13 @@ public class FrontendController {
         var uri = uriBuilder.getRequestURI();
         var mo = model.addAttribute("products", productService.findAllProducts());
         constructPageable(products, propertiesService.getDefaultPageSize(), mo, uri);
-
         return "main";
     }
 
     @RequestMapping("/main")
-    public String searchResult(Model model, Pageable pageable,
-                               @RequestParam("name") String name) {
-//        var uri = uriBuilder.getRequestURI();
+    public String searchResult( Pageable pageable,
+                               @RequestParam("name") String name, HttpServletRequest uriBuilder,Model model) {
+        var uri = uriBuilder.getRequestURI();
         var result = productService.findByName(name,pageable);
         constructPageable(result, propertiesService.getDefaultPageSize(), model, "/");
         return "main";
@@ -77,16 +76,20 @@ public class FrontendController {
         return "registration";
     }
 
-    @PostMapping("/registration")
+    @RequestMapping("/registration")
     public String register(@Valid UserRegisterForm form,
                            BindingResult validationResult,
                            RedirectAttributes attributes) {
-        attributes.addFlashAttribute("user", form);
-
+//        attributes.addFlashAttribute("form");
         if (validationResult.hasFieldErrors()) {
             attributes.addFlashAttribute("errors", validationResult.getFieldErrors());
             return "redirect:/registration";
         }
+        if (userService.checkUser(form)) {
+            attributes.addFlashAttribute("user", form);
+            return "redirect:/registration";
+        }
+        attributes.addFlashAttribute("user", form);
 
         userService.register(form);
         return "redirect:/login";
@@ -113,7 +116,7 @@ public class FrontendController {
     }
 
     @GetMapping("/places/{id:\\d+?}")
-    public String placePage(@PathVariable int id, Model model, Pageable pageable, HttpServletRequest uriBuilder) {
+    public String placePage(@PathVariable int id,Pageable pageable, HttpServletRequest uriBuilder, Model model ) {
         model.addAttribute("place", placeService.getPlace(id));
         var uri = uriBuilder.getRequestURI();
         var foods = productService.getProducts(id, pageable);

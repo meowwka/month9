@@ -23,7 +23,7 @@
         <div>
             <label class="flex flex-v-center label-input-text">
                 <span class="label-input-text">Password:</span>
-                <input type="text" name="password" placeholder="password" value="" autofocus>
+                <input type="password" name="password" placeholder="password" value="" autofocus>
             </label>
         </div>
         <div>

@@ -3,6 +3,7 @@ package com.product.handmade.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -17,23 +18,25 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NotBlank
+    @Email
+    @NotBlank(message = "Email cannot be Empty")
     @Column(length = 128)
     private String email;
 
-    @NotBlank
-    @Column(length = 50)
+    @NotBlank(message = "Name cannot be empty")
+    @Size(min=3, max=128, message = "Name should be more than 3 symbols")
+    @Column(length = 128)
+    @Pattern(regexp = "^[^\\d\\s]+$", message = "should contain only letters")
     private String name;
 
-    @NotBlank
-    @Size(min=5, max=15, message = "Login must be >=5 and <= 15 symbols ")
-    @Column(length = 15)
-    @Pattern(regexp = "^[^\\d\\s]+$", message = "should contain only letters")
+    @NotBlank(message = "Login cannot be empty")
+    @Size(min=3, max=128, message = "Login should be more than 3 symbols ")
+    @Column(length = 128)
     private String login;
 
-    @NotBlank
-    @Size(min=3, max=15, message = "Password must be  >=3 and <= 15 symbols")
-    @Column(length = 15)
+    @NotBlank(message = "Password cannot be empty")
+    @Size(min=8, max=128, message = "Password must be more than 8 symbols")
+    @Column(length = 128)
     private String password;
 
     @Column

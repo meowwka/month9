@@ -22,9 +22,9 @@
                       <p>${fieldError.field} - ${fieldError.defaultMessage!'-- no message --'}</p>
                   </#list>
               </#if>
-<#--              <#if user?? >-->
-<#--                  <p>${user.name} - ${user.login}- ${user.email} already registered!</p>-->
-<#--              </#if>-->
+              <#if user?? >
+                  <p>${user.name} - ${user.login}- ${user.email} already registered!</p>
+              </#if>
           </div>
       </form>
 
