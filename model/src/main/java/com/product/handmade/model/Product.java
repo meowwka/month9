@@ -27,6 +27,7 @@ public class Product {
     @Column
     private float price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "place_id")
     private Place place;
 }

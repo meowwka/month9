@@ -26,6 +26,10 @@ class PlaceRestController {
     public List<PlaceDTO> getPlaces(Pageable pageable) {
         return placeService.getPlaces(pageable).getContent();
     }
+    @GetMapping("productAll")
+    public List<ProductDTO> getProducts(Pageable pageable){
+        return productService.findProducts(pageable).getContent();
+    }
 
     @GetMapping("/{id:\\d+?}")
     public PlaceDTO placePage(@PathVariable int id) {

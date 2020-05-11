@@ -23,8 +23,8 @@
                 <div class="card-body">
                     <h5 class="card-title">${pr.name}</h5>
                     <p class="card-text">Price - ${pr.price}</p>
-                    <p class="card-text"><small class="text-muted">Type = ${pr.type.name}</small></p>
-<#--                    <p class="card-text"><small class="text-muted">Place = ${pr.place.name}</small></p>-->
+                    <p class="card-text"><small class="text-muted">Type - ${pr.type.name}</small></p>
+                    <p class="card-text"><small class="text-muted">Place - ${pr.place.name}</small></p>
                 </div>
             </div>
         </div>

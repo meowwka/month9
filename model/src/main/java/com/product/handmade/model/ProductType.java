@@ -17,6 +17,7 @@ public class ProductType {
     private String name;
     @Column(length = 128)
     private String icon;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
     @OrderBy("name ASC")
     List<Product> products;
