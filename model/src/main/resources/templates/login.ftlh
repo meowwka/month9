@@ -8,21 +8,23 @@
         </#if>
     </div>
 
-    <form  class="form-inline"  id="login-form" action="/login" method="post" style=" margin-left: 15rem;">
-        <#if _csrf??>
-            <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
-        </#if>
-        <div class="form-group mb-2">
-                <label for="staticEmail2" class="sr-only">Email</label>
-                <input type="text" class="form-control" name="username" placeholder="Your email"  value="${(user.email)!''}" autofocus >
+    <div class="d-flex justify-content-center">
+        <div class="mx-3">
+
+            <form    id="login-form" action="/login" method="post" >
+                <#if _csrf??>
+                    <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
+                </#if>
+                        <input type="text" class="form-control mb-2" name="username" placeholder="Your email"  value="${(user.email)!''}" autofocus >
+
+                        <input type="password" class="form-control mb-2" name="password" placeholder="password" value="" autofocus>
+                <div>
+                    <button type="submit" class="btn btn-outline-info btn-block">Sign In</button>
+                    <a href="/registration"  class="btn btn-outline-info btn-block">Registration</a>
+                    <a class="text-info" href="/forgot-password"> Forgot password? </a>
+
+                </div>
+            </form>
         </div>
-        <div class="form-group mx-sm-3 mb-2">
-            <label for="inputPassword2" class="sr-only">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="password" value="" autofocus>
-        </div>
-        <div>
-            <button type="submit" class="btn btn-outline-info">Sign In</button>
-            <a href="/registration"  class="btn btn-outline-info">Registration</a>
-        </div>
-    </form>
+    </div>
 </@main.renderWith>

@@ -9,9 +9,9 @@
           <#if _csrf??>
               <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
           </#if>
-        <input type="email" name="email" class="form-control mb-1" placeholder="Email" value="${form.email!''}">
-        <input type="text"  name="name" class="form-control mb-1" placeholder="Name" value="${form.name!''}" >
-        <input type="text" name="login" class="form-control mb-1" placeholder="Login"  value="${form.login!''}">
+        <input type="email" name="email" class="form-control mb-2" placeholder="Email" value="${form.email!''}">
+        <input type="text"  name="name" class="form-control mb-2" placeholder="Name" value="${form.name!''}" >
+        <input type="text" name="login" class="form-control mb-2" placeholder="Login"  value="${form.login!''}">
         <input type="password" name="password" class="form-control mb-1" placeholder="Password"  value="">
         <button type="submit" class="btn btn-outline-info btn-block">Register</button>
           <a type="submit" href="/login" class="btn btn-outline-info btn-block">Sign In</a>

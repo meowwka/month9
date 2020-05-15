@@ -2,7 +2,11 @@ package com.product.handmade.controller;
 
 import com.product.handmade.cart.KeyValueRequestDto;
 import com.product.handmade.exception.ResourceNotFoundException;
+import com.product.handmade.model.User;
 import com.product.handmade.model.UserRegisterForm;
+import com.product.handmade.repo.UserRepo;
+import com.product.handmade.resetPassword.PasswordResetToken;
+import com.product.handmade.resetPassword.ResetRepository;
 import com.product.handmade.service.PlaceService;
 import com.product.handmade.service.ProductService;
 import com.product.handmade.service.PropertiesService;
@@ -12,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
@@ -23,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.UUID;
 
 import static java.util.stream.Collectors.toList;
 
@@ -34,6 +40,8 @@ public class FrontendController {
     private final PlaceService placeService;
     private final ProductService productService;
     private final PropertiesService propertiesService;
+    private final UserRepo userRepo;
+    private final ResetRepository reserRepo;
 
     private static <T> void constructPageable(Page<T> list, int pageSize, Model model, String uri) {
         if (list.hasNext()) {
@@ -165,5 +173,55 @@ public class FrontendController {
         }
 
         return "redirect:/";
+    }
+
+
+    @GetMapping("/forgot-password")
+    public String pageForgotPassword(Model model) {
+        return "forgot";
+    }
+
+    @PostMapping("/forgot-password")
+    public String submitForgotPasswordPage(@RequestParam("email") String email,
+                                           RedirectAttributes attributes) {
+
+
+        if (!userRepo.existsByEmail(email)) {
+            attributes.addFlashAttribute("errorText", "Entered email does not exist!");
+            return "redirect:/forgot-password";
+        }
+
+        PasswordResetToken pToken = PasswordResetToken.builder()
+                .user(userRepo.findByEmail(email).get())
+                .token(UUID.randomUUID().toString().replace("-",""))
+                .build();
+        reserRepo.deleteAll();
+        reserRepo.save(pToken);
+        attributes.addFlashAttribute("token", pToken);
+        return "redirect:/forgot-success";
+    }
+
+    @GetMapping("/forgot-success")
+    public String pageResetPassword(Model model) {
+        return "forgot-success";
+    }
+
+    @PostMapping("/reset-password")
+    public String submitResetPasswordPage(@RequestParam("token") String token,
+                                          @RequestParam("newPassword") String newPassword,
+                                          RedirectAttributes attributes) {
+
+        if (!reserRepo.existsByToken(token)) {
+            attributes.addFlashAttribute("errorText", "Entered email does not exist!");
+            return "redirect:/reset-password";
+        }
+
+        PasswordResetToken pToken = reserRepo.findByToken(token).get();
+        User user = userRepo.findById(pToken.getUser().getId()).get();
+        user.setPassword(new BCryptPasswordEncoder().encode(newPassword));
+
+        userRepo.save(user);
+
+        return "redirect:/login";
     }
 }
