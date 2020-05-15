@@ -29,7 +29,7 @@
     <header class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/main">Main</a>
+            <a class="navbar-brand" href="/">Main</a>
                 <ul id="ulist" class="navbar-nav">
 <#--                        <li class="nav-item  ">-->
 <#--                            <a class="nav-link" href="/main">Handmade</a>-->

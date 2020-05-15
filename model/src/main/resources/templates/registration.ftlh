@@ -4,7 +4,7 @@
 
   <div class="d-flex justify-content-center">
     <div class="mx-3">
-      <form action="/" id="registration-form" method="post">
+      <form action="/registration" id="registration-form" method="post">
         <h3>Registration</h3>
           <#if _csrf??>
               <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>

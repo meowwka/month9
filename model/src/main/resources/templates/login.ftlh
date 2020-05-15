@@ -22,7 +22,7 @@
         </div>
         <div>
             <button type="submit" class="btn btn-outline-info">Sign In</button>
-            <a href="/"  class="btn btn-outline-info">Registration</a>
+            <a href="/registration"  class="btn btn-outline-info">Registration</a>
         </div>
     </form>
 </@main.renderWith>

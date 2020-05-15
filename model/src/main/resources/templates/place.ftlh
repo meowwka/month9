@@ -18,7 +18,7 @@
     <#include "partials/pagination.ftlh">
 
     <div>
-        <a href="/">Back to home page</a>
+        <a href="/registration">Back to home page</a>
     </div>
 
 </@main.renderWith>

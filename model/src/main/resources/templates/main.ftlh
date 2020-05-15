@@ -1,7 +1,7 @@
 <#import "partials/main.ftlh" as main />
 
 <@main.renderWith title="Handmade">
-    <form action="/main" class="mb-24" method="post">
+    <form action="/" class="mb-24" method="post">
         <#if _csrf??>
             <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
         </#if>
@@ -25,6 +25,7 @@
                     <p class="card-text">Price - ${pr.price}</p>
                     <p class="card-text"><small class="text-muted">Type - ${pr.type.name}</small></p>
                     <p class="card-text"><small class="text-muted">Place - ${pr.place.name}</small></p>
+                    <a href="/"  class="btn btn--outline-info">Add to cart</a>
                 </div>
             </div>
         </div>

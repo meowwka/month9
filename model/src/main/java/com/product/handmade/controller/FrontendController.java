@@ -52,7 +52,7 @@ public class FrontendController {
         return String.format("%s?page=%s&size=%s", uri, page, size);
     }
 
-    @GetMapping("/main")
+    @GetMapping("/")
     public String index(Model model, Pageable pageable, HttpServletRequest uriBuilder) {
         var products = productService.findProducts(pageable);
         var uri = uriBuilder.getRequestURI();
@@ -61,7 +61,7 @@ public class FrontendController {
         return "main";
     }
 
-    @RequestMapping("/main")
+    @RequestMapping("/")
     public String searchResult( Pageable pageable,
                                @RequestParam("name") String name, HttpServletRequest uriBuilder,Model model) {
         var uri = uriBuilder.getRequestURI();
@@ -70,7 +70,7 @@ public class FrontendController {
         return "main";
     }
 
-    @GetMapping("/")
+    @GetMapping("/registration")
     public String pageRegisterUser(Model model){
         if(!model.containsAttribute("form")){
             model.addAttribute("form", new UserRegisterForm());
@@ -78,7 +78,7 @@ public class FrontendController {
         return "registration";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/registration")
     public String register(@Valid UserRegisterForm form,
                            BindingResult validationResult,
                            RedirectAttributes attributes) {
