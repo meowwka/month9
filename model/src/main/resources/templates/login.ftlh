@@ -8,7 +8,7 @@
         </#if>
     </div>
 
-    <form  class="form-inline" action="/login" method="post" style=" margin-left: 15rem;">
+    <form  class="form-inline"  id="login-form" action="/login" method="post" style=" margin-left: 15rem;">
         <#if _csrf??>
             <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
         </#if>

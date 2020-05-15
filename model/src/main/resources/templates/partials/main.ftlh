@@ -30,7 +30,7 @@
         <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/main">Main</a>
-                <ul class="navbar-nav">
+                <ul id="ulist" class="navbar-nav">
 <#--                        <li class="nav-item  ">-->
 <#--                            <a class="nav-link" href="/main">Handmade</a>-->
 <#--                        </li>-->
@@ -40,6 +40,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/successful">Profile</a>
                         </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
                 </ul>
         </nav>
         </div>
