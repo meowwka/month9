@@ -1,5 +1,6 @@
 package com.product.handmade.controller;
 
+import com.product.handmade.cart.KeyValueRequestDto;
 import com.product.handmade.exception.ResourceNotFoundException;
 import com.product.handmade.model.UserRegisterForm;
 import com.product.handmade.service.PlaceService;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
 
@@ -142,5 +144,26 @@ public class FrontendController {
                 .collect(toList());
         return ResponseEntity.unprocessableEntity()
                 .body(apiFieldErrors);
+    }
+
+    @GetMapping("/invalidate")
+    public String invalidate(HttpSession session) {
+        if (session != null) {
+            session.invalidate();
+        }
+
+        return "redirect:/";
+    }
+
+    @PostMapping("/store")
+    public String store(KeyValueRequestDto data, HttpSession session) {
+        if (session != null) {
+            var attr = session.getAttribute(data.getKey());
+            if (attr == null) {
+                session.setAttribute(data.getKey(), data.getValue());
+            }
+        }
+
+        return "redirect:/";
     }
 }
