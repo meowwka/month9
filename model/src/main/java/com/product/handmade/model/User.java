@@ -1,5 +1,6 @@
 package com.product.handmade.model;
 
+import com.product.handmade.cart.Cart;
 import lombok.*;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Data
 @Entity
@@ -48,4 +50,8 @@ public class User {
     @Column(length = 60)
     @Builder.Default
     private String role ="USER";
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    private Set<Cart> cart;
 }

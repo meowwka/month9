@@ -1,5 +1,5 @@
 package com.product.handmade.cart;
 
-final class Constants {
-    static final String CART_ID = "_cart_";
+public final class Constants {
+    public  static final String CART_ID = "_cart_";
 }

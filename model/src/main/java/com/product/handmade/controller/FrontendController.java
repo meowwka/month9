@@ -1,9 +1,14 @@
 package com.product.handmade.controller;
 
+import com.product.handmade.cart.CartRepository;
+import com.product.handmade.cart.CartService;
+import com.product.handmade.cart.Constants;
 import com.product.handmade.cart.KeyValueRequestDto;
 import com.product.handmade.exception.ResourceNotFoundException;
+import com.product.handmade.model.Product;
 import com.product.handmade.model.User;
 import com.product.handmade.model.UserRegisterForm;
+import com.product.handmade.repo.ProductRepository;
 import com.product.handmade.repo.UserRepo;
 import com.product.handmade.resetPassword.PasswordResetToken;
 import com.product.handmade.resetPassword.ResetRepository;
@@ -28,6 +33,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import static java.util.stream.Collectors.toList;
@@ -42,6 +49,8 @@ public class FrontendController {
     private final PropertiesService propertiesService;
     private final UserRepo userRepo;
     private final ResetRepository reserRepo;
+    private final CartService cartService;
+    private final ProductRepository productRepository;
 
     private static <T> void constructPageable(Page<T> list, int pageSize, Model model, String uri) {
         if (list.hasNext()) {
@@ -60,12 +69,26 @@ public class FrontendController {
         return String.format("%s?page=%s&size=%s", uri, page, size);
     }
 
+
     @GetMapping("/")
-    public String index(Model model, Pageable pageable, HttpServletRequest uriBuilder) {
+    public String index(Model model, Pageable pageable, HttpServletRequest uriBuilder, HttpSession session) {
+        var map = new HashMap<String, Object>();
+        map.put("Идентификатор сессии", session.getId());
+
+        session.getAttributeNames()
+                .asIterator()
+                .forEachRemaining(key -> map.put(key, session.getAttribute(key).toString()));
+
+        model.addAttribute("sessionAttributes", map);
+
         var products = productService.findProducts(pageable);
         var uri = uriBuilder.getRequestURI();
         var mo = model.addAttribute("products", productService.findAllProducts());
         constructPageable(products, propertiesService.getDefaultPageSize(), mo, uri);
+        if(uriBuilder.getUserPrincipal() != null) {
+            var user = userService.getByEmail(uriBuilder.getUserPrincipal().getName());
+            model.addAttribute("user", user);
+        }
         return "main";
     }
 

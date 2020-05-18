@@ -37,12 +37,21 @@
 <#--                        <li class="nav-item">-->
 <#--                            <a class="nav-link" href="/">Registration</a>-->
 <#--                        </li>-->
+                    <#if user??>
                         <li class="nav-item">
                             <a class="nav-link" href="/successful">Profile</a>
                         </li>
+                    <#else>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                    </#if>
+
+
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
+                        <a class="nav-link" href="/cart">Cart</a>
                     </li>
+
                 </ul>
         </nav>
         </div>

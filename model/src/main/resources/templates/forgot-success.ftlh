@@ -18,7 +18,7 @@
         <div>
                 <#if token?? >
                     <div>
-                        <p>Token: ${token.token!"-- no message --"}</p>
+                        <p>Token-${token.token!"-- no message --"}</p>
                     </div>
                 </#if>
                 <input type="text"  class="form-control mb-2" name="token" placeholder="Token" >
