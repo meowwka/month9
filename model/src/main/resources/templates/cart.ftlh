@@ -4,7 +4,7 @@
 
 <div class="container">
     <h1>Ваша корзина</h1>
-        <#if cartItems??>
+
         <#list cartItems as item>
             <div class="card mb-3 mx-auto " style="max-width: 540px;">
                 <div class="row no-gutters">
@@ -27,12 +27,17 @@
                 <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
             </#if>
 
-            <button class="btn btn-outline-info">Очистить корзину</button>
+            <button class="btn btn-outline-info">Clear cart</button>
+                <#if cartItems??>
+                    <a href="/order" class="btn btn-outline-info">To order</a>
+                <#else>
+                        <p>тут ничего нет!</p>
+                    </#if>
+
+
             <br><br><br>
         </form>
-    <#else>
-        <p>тут ничего нет!</p>
-    </#if>
+
 
 </div>
 

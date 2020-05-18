@@ -30,6 +30,9 @@ public class UserService {
     public boolean checkUser(UserRegisterForm form) {
         return userRepository.existsByLoginAndEmail(form.getLogin(), form.getEmail());
     }
+    public boolean check(String email){
+        return userRepository.existsByEmail(email);
+    }
 
     public UserDTO register(UserRegisterForm userRegisterForm){
         if(userRepository.existsByEmail(userRegisterForm.getEmail())){

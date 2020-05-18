@@ -5,6 +5,7 @@ import com.product.handmade.repo.ProductRepository;
 import com.product.handmade.repo.UserRepo;
 import com.product.handmade.service.ProductService;
 import com.product.handmade.service.PropertiesService;
+import com.product.handmade.service.UserService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -25,13 +26,19 @@ class CartController {
     private final ProductRepository productRepository;
     private final UserRepo userRepo;
     private final CartRepository cartRepository;
-    private final ProductService productService;
+    private final UserService userService;
     private final PropertiesService propertiesService;
 
     @GetMapping("/cart")
-    public String cart(Model model, @SessionAttribute(name = Constants.CART_ID, required = false) List<Product> cart) {
+    public String cart(Model model, @SessionAttribute(name = Constants.CART_ID, required = false) List<Product> cart, HttpServletRequest uriBuilder) {
         if (cart != null) {
             model.addAttribute("cartItems", cart);
+        }else {
+            return "redirect:/cart";
+        }
+        if(uriBuilder.getUserPrincipal() != null) {
+            var user = userService.getByEmail(uriBuilder.getUserPrincipal().getName());
+            model.addAttribute("user", user);
         }
         return "cart";
     }

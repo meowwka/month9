@@ -5,17 +5,16 @@ import com.product.handmade.cart.CartService;
 import com.product.handmade.cart.Constants;
 import com.product.handmade.cart.KeyValueRequestDto;
 import com.product.handmade.exception.ResourceNotFoundException;
+import com.product.handmade.model.Order;
 import com.product.handmade.model.Product;
 import com.product.handmade.model.User;
 import com.product.handmade.model.UserRegisterForm;
+import com.product.handmade.repo.OrderRepository;
 import com.product.handmade.repo.ProductRepository;
 import com.product.handmade.repo.UserRepo;
 import com.product.handmade.resetPassword.PasswordResetToken;
 import com.product.handmade.resetPassword.ResetRepository;
-import com.product.handmade.service.PlaceService;
-import com.product.handmade.service.ProductService;
-import com.product.handmade.service.PropertiesService;
-import com.product.handmade.service.UserService;
+import com.product.handmade.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -49,8 +48,7 @@ public class FrontendController {
     private final PropertiesService propertiesService;
     private final UserRepo userRepo;
     private final ResetRepository reserRepo;
-    private final CartService cartService;
-    private final ProductRepository productRepository;
+    private final OrderService orderService;
 
     private static <T> void constructPageable(Page<T> list, int pageSize, Model model, String uri) {
         if (list.hasNext()) {
@@ -102,9 +100,13 @@ public class FrontendController {
     }
 
     @GetMapping("/registration")
-    public String pageRegisterUser(Model model){
+    public String pageRegisterUser(Model model,  HttpServletRequest uriBuilder){
         if(!model.containsAttribute("form")){
             model.addAttribute("form", new UserRegisterForm());
+        }
+        if(uriBuilder.getUserPrincipal() != null) {
+            var user = userService.getByEmail(uriBuilder.getUserPrincipal().getName());
+            model.addAttribute("user", user);
         }
         return "registration";
     }
@@ -113,7 +115,6 @@ public class FrontendController {
     public String register(@Valid UserRegisterForm form,
                            BindingResult validationResult,
                            RedirectAttributes attributes) {
-//        attributes.addFlashAttribute("form");
         if (validationResult.hasFieldErrors()) {
             attributes.addFlashAttribute("errors", validationResult.getFieldErrors());
             return "redirect:/";
@@ -133,6 +134,30 @@ public class FrontendController {
         var user = userService.getByEmail(principal.getName());
         model.addAttribute("user", user);
         return "successful";
+    }
+    @GetMapping("/order")
+    public String OrderPage(Model model, Principal principal){
+        var user = userService.getByEmail(principal.getName());
+        model.addAttribute("user", user);
+        return "order";
+    }
+    @PostMapping("/order")
+    public String order(@RequestParam("email") String email,
+//                        @RequestParam("number") int number, @RequestParam("address") String address,
+//                        @RequestParam("city") String city, @RequestParam("state") String state, @RequestParam("zip") int zip
+                        @Valid Order order ,BindingResult validationResult,
+                        RedirectAttributes attributes){
+        if (validationResult.hasFieldErrors()) {
+            attributes.addFlashAttribute("errors", validationResult.getFieldErrors());
+            return "redirect:/order";
+        }
+
+        if(userService.check(email)){
+            attributes.addFlashAttribute("order", order);
+            orderService.saveOrder(order);
+            return "redirect:/";
+        }
+        return "order";
     }
 
     @GetMapping("/login")
@@ -198,9 +223,13 @@ public class FrontendController {
         return "redirect:/";
     }
 
-
     @GetMapping("/forgot-password")
-    public String pageForgotPassword(Model model) {
+    public String pageForgotPassword(Model model, HttpServletRequest uriBuilder) {
+        if(uriBuilder.getUserPrincipal() != null) {
+            var user = userService.getByEmail(uriBuilder.getUserPrincipal().getName());
+            model.addAttribute("user", user);
+        }
+
         return "forgot";
     }
 
@@ -225,7 +254,12 @@ public class FrontendController {
     }
 
     @GetMapping("/forgot-success")
-    public String pageResetPassword(Model model) {
+    public String pageResetPassword(Model model,  HttpServletRequest uriBuilder)
+    {
+        if(uriBuilder.getUserPrincipal() != null) {
+            var user = userService.getByEmail(uriBuilder.getUserPrincipal().getName());
+            model.addAttribute("user", user);
+        }
         return "forgot-success";
     }
 
@@ -233,18 +267,16 @@ public class FrontendController {
     public String submitResetPasswordPage(@RequestParam("token") String token,
                                           @RequestParam("newPassword") String newPassword,
                                           RedirectAttributes attributes) {
-
         if (!reserRepo.existsByToken(token)) {
             attributes.addFlashAttribute("errorText", "Entered email does not exist!");
             return "redirect:/reset-password";
         }
-
         PasswordResetToken pToken = reserRepo.findByToken(token).get();
         User user = userRepo.findById(pToken.getUser().getId()).get();
         user.setPassword(new BCryptPasswordEncoder().encode(newPassword));
-
         userRepo.save(user);
-
         return "redirect:/login";
     }
+
+
 }

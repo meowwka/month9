@@ -8,7 +8,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Set;
 
 @Data
 @Entity
@@ -51,7 +50,7 @@ public class User {
     @Builder.Default
     private String role ="USER";
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
-    private Set<Cart> cart;
+    private Cart cart;
 }
