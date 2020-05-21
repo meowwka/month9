@@ -35,7 +35,7 @@ public class Product {
     private Place place;
 
     @ManyToMany(mappedBy = "products")
-    Set<Cart> carts;
+    List<Cart> carts;
 
     @Override
     public String toString() {

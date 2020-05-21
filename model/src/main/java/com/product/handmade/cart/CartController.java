@@ -31,14 +31,14 @@ class CartController {
 
     @GetMapping("/cart")
     public String cart(Model model, @SessionAttribute(name = Constants.CART_ID, required = false) List<Product> cart, HttpServletRequest uriBuilder) {
-        if (cart != null) {
-            model.addAttribute("cartItems", cart);
-        }else {
-            return "redirect:/cart";
-        }
+        var user = userService.getByEmail(uriBuilder.getUserPrincipal().getName());
         if(uriBuilder.getUserPrincipal() != null) {
-            var user = userService.getByEmail(uriBuilder.getUserPrincipal().getName());
             model.addAttribute("user", user);
+            if (cart != null) {
+                model.addAttribute("cartItems", cart);
+            }else {
+                return "redirect:/cart";
+            }
         }
         return "cart";
     }

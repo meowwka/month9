@@ -2,16 +2,17 @@
  объявляем макро-функцию используя которую мы создадим шаблон страницы
  https://freemarker.apache.org/docs/dgui_misc_userdefdir.html
  -->
-<#macro renderWith title scripts=[] styles=[]>
+<#import "/spring.ftl" as spring>
+<#macro renderWith title scripts=[] styles=[] dir="ltr">
     <!doctype html>
-    <html lang="en">
+    <html lang="${.locale}" dir="${dir}">
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-        <title>${title}</title>
+        <title><@spring.message "title" /></title>
         <link rel="stylesheet" href="/css/styles.css">
         <#list styles as styleSource>
             <link rel="stylesheet" href="${styleSource}">
@@ -29,31 +30,39 @@
     <header class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/">Main</a>
+            <a class="navbar-brand" href="/"> <@spring.message "main" /></a>
                 <ul id="ulist" class="navbar-nav">
-<#--                        <li class="nav-item  ">-->
-<#--                            <a class="nav-link" href="/main">Handmade</a>-->
-<#--                        </li>-->
-<#--                        <li class="nav-item">-->
-<#--                            <a class="nav-link" href="/">Registration</a>-->
-<#--                        </li>-->
                     <#if user??>
                         <li class="nav-item">
-                            <a class="nav-link" href="/successful">Profile</a>
+                            <a class="nav-link" href="/successful"> <@spring.message "profile" /></a>
                         </li>
                     <#else>
                         <li class="nav-item">
-                            <a class="nav-link" href="/login">Login</a>
+                            <a class="nav-link" href="/login"> <@spring.message 'login' /></a>
                         </li>
                     </#if>
-
-
                     <li class="nav-item">
-                        <a class="nav-link" href="/cart">Cart</a>
+                        <a class="nav-link" href="/cart"> <@spring.message "cart" /></a>
                     </li>
-
                 </ul>
         </nav>
+            <div>
+                <form action="" method="get">
+                    <label for="lang_select">
+                        <@spring.message "label.language" />:
+                    </label>
+                    <select name="lang" id="lang_select">
+                        <option value="">Default</option>
+                        <option value="" disabled>----------</option>
+                        <option value="en-US">American English</option>
+                        <option value="ru-RU">Русский</option>
+                    </select>
+                    <button type="submit">
+                        <@spring.message "button.language-change.text" />
+                    </button>
+                    <p><@spring.message "current-locale" /> : ${.locale}</p>
+                </form>
+            </div>
         </div>
     </header>
 
