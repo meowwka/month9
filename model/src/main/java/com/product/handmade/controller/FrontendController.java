@@ -117,7 +117,7 @@ public class FrontendController {
                            RedirectAttributes attributes) {
         if (validationResult.hasFieldErrors()) {
             attributes.addFlashAttribute("errors", validationResult.getFieldErrors());
-            return "redirect:/";
+            return "redirect:/registration";
         }
         if (userService.checkUser(form)) {
             attributes.addFlashAttribute("user", form);

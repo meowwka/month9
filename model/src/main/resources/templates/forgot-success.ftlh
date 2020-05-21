@@ -1,7 +1,8 @@
+<#import "/spring.ftl" as spring>
 <#import "partials/main.ftlh" as main />
 
 <@main.renderWith title="Success">
-    <h2>Please enter token</h2>
+    <h2><@spring.message "enter-token"/></h2>
     <#if errorText?? >
         <div>
             <p>${errorText!'-- no message --'}</p>
@@ -24,10 +25,10 @@
                 <input type="text"  class="form-control mb-2" name="token" placeholder="Token" >
         </div>
         <div>
-                <input type="password"  class="form-control mb-2" name="newPassword" placeholder="New Password" >
+                <input type="password"  class="form-control mb-2" name="newPassword" placeholder="<@spring.message "new-password"/>" >
         </div>
         <div>
-            <button type="submit" class="btn btn-outline-info btn-block">Отправить</button>
+            <button type="submit" class="btn btn-outline-info btn-block"><@spring.message "send"/></button>
         </div>
     </form>
     </div>

@@ -1,7 +1,8 @@
+<#import "/spring.ftl" as spring>
 <#import "partials/main.ftlh" as main />
 
 <@main.renderWith title="Order">
-    <h2>Fill in the data</h2>
+    <h2><@spring.message "fill-data"/></h2>
 
     <form action="/order" class="needs-validation mx-auto" novalidate style="width: 40rem;" method="post">
         <#if _csrf??>
@@ -10,56 +11,56 @@
         <#if user??>
         <div class="form-row">
             <div class="col-md-4 mb-3">
-                <label for="validationCustom01">Name</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Name" value="${user.name}" required>
+                <label for="validationCustom01"><@spring.message "name"/></label>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="<@spring.message "name"/>" value="${user.name}" required>
                 <div class="valid-feedback">
-                    Looks good!
+                    <@spring.message "looks-good"/>
                 </div>
             </div>
             <div class="col-md-4 mb-3">
-                <label for="validationCustom02">Email</label>
-                <input type="email" name="email" class="form-control" id="validationCustom02" placeholder="Email" value="${user.email}" required>
+                <label for="validationCustom02"><@spring.message "your-email"/></label>
+                <input type="email" name="email" class="form-control" id="validationCustom02" placeholder="<@spring.message "your-email"/>" value="${user.email}" required>
                 <div class="valid-feedback">
-                    Looks good!
+                    <@spring.message "looks-good"/>
                 </div>
             </div>
             <div class="col-md-4 mb-3">
-                <label for="validationCustomUsername">Number</label>
+                <label for="validationCustomUsername"><@spring.message "number"/></label>
                 <div class="input-group">
                     <input name="number" type="tel" class="form-control" id="validationCustomUsername" placeholder="+996-123-456-789" aria-describedby="inputGroupPrepend"  pattern="+[0-9]{3}-[0-9]{3}-[0-9]{3}-[0-9]{3}" required>
                     <div class="invalid-feedback">
-                        Please enter your mobile number.
+                        <@spring.message "enter-number"/>
                     </div>
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <label for="inputAddress">Address</label>
-            <input name="address" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
+            <label for="inputAddress"><@spring.message "address"/></label>
+            <input name="address" type="text" class="form-control" id="inputAddress" placeholder="<@spring.message "address"/>" required>
             <div class="invalid-feedback">
-                Please enter your address.
+                <@spring.message "enter-address"/>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-                <label for="validationCustom03">City</label>
-                <input name="city" type="text" class="form-control" id="validationCustom03" placeholder="City" required>
+                <label for="validationCustom03"> <@spring.message "city"/></label>
+                <input name="city" type="text" class="form-control" id="validationCustom03" placeholder=" <@spring.message "city"/>" required>
                 <div class="invalid-feedback">
-                    Please provide a valid city.
+                    <@spring.message "enter-city"/>
                 </div>
             </div>
             <div class="col-md-3 mb-3">
-                <label for="validationCustom04">State</label>
-                <input  name="state" type="text" class="form-control" id="validationCustom04" placeholder="State" required>
+                <label for="validationCustom04"> <@spring.message "region"/></label>
+                <input  name="state" type="text" class="form-control" id="validationCustom04" placeholder=" <@spring.message "region"/>" required>
                 <div class="invalid-feedback">
-                    Please provide a valid state.
+                    <@spring.message "enter-region"/>
                 </div>
             </div>
             <div class="col-md-3 mb-3">
-                <label for="validationCustom05">Zip</label>
+                <label for="validationCustom05"><@spring.message "zip"/></label>
                 <input name="zip" type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
                 <div class="invalid-feedback">
-                    Please provide a valid zip.
+                    <@spring.message "enter-zip"/>
                 </div>
             </div>
         </div>
@@ -67,18 +68,18 @@
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
                 <label class="form-check-label" for="invalidCheck">
-                    Agree to terms and conditions
+                    <@spring.message "agree"/>
                 </label>
                 <div class="invalid-feedback">
-                    You must agree before submitting.
+                    <@spring.message "agree-invalid"/>
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <button class="btn btn-primary" type="submit"><@spring.message "toOrder"/></button>
         </#if>
     </form>
     <#if errors?? >
-        <p>Invalid fields!</p>
+        <p><@spring.message "input-error"/></p>
         <#list errors as fieldError>
             <p>${fieldError.field} - ${fieldError.defaultMessage!'-- no message --'}</p>
         </#list>

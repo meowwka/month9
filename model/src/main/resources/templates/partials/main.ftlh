@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-        <title><@spring.message "title" /></title>
+        <title> ${title} <@spring.message "title" /></title>
         <link rel="stylesheet" href="/css/styles.css">
         <#list styles as styleSource>
             <link rel="stylesheet" href="${styleSource}">
@@ -48,18 +48,21 @@
         </nav>
             <div>
                 <form action="" method="get">
-                    <label for="lang_select">
-                        <@spring.message "label.language" />:
-                    </label>
-                    <select name="lang" id="lang_select">
-                        <option value="">Default</option>
-                        <option value="" disabled>----------</option>
-                        <option value="en-US">American English</option>
-                        <option value="ru-RU">Русский</option>
-                    </select>
-                    <button type="submit">
-                        <@spring.message "button.language-change.text" />
-                    </button>
+                    <div  class="input-group">
+                        <label for="lang_select" style="margin-top: 8px; margin-right: 15px;margin-left: -30px;">
+                            <@spring.message "label.language" />: </label>
+                        <select class="custom-select" name="lang" id="lang_select">
+                            <option value="">Default</option>
+                            <option value="" disabled>----------</option>
+                            <option value="en">English</option>
+                            <option value="ru">Русский</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-info" type="submit">
+                            <@spring.message "button.language-change.text" />
+                            </button>
+                        </div>
+                    </div>
                     <p><@spring.message "current-locale" /> : ${.locale}</p>
                 </form>
             </div>
