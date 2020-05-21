@@ -54,8 +54,8 @@
                         <select class="custom-select" name="lang" id="lang_select">
                             <option value="">Default</option>
                             <option value="" disabled>----------</option>
-                            <option value="en">English</option>
-                            <option value="ru">Русский</option>
+                            <option value="en_US">English</option>
+                            <option value="ru_RU">Русский</option>
                         </select>
                         <div class="input-group-append">
                             <button class="btn btn-outline-info" type="submit">

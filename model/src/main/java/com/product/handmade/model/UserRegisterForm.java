@@ -12,20 +12,20 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 public class UserRegisterForm {
-    @NotBlank(message = "Email is not correct")
+    @NotBlank
     @Email
     private String email = "";
 
     @NotBlank
-    @Size(min=3, max=128, message = "Name cannot be empty and less than 3 symbols")
-    @Pattern(regexp = "^[^\\d\\s]+$", message = "Should contain only letters")
+    @Size(min=3, max=128)
+    @Pattern(regexp = "^[^\\d\\s]+$")
     private String name = "";
 
     @NotBlank
-    @Size(min=3, max=128, message = "Login cannot be empty and less than 3 symbols")
+    @Size(min=3, max=128)
     private String login = "";
 
     @NotBlank
-    @Size(min=4, max=128,message = "Password cannot be empty and less than 4 symbols")
+    @Size(min=3, max=128)
     private String password = "";
 }

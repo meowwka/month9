@@ -21,7 +21,7 @@
         <#if errors?? >
           <p><@spring.message "input-error"/></p>
           <#list errors as fieldError>
-            <p>${fieldError.field} - ${fieldError.defaultMessage!'-- no message --'}</p>
+            <p>${fieldError.field} - <@spring.messageText fieldError.codes[0] fieldError.defaultMessage /> </p>
           </#list>
         </#if>
         <#if user?? >

@@ -116,7 +116,8 @@ public class FrontendController {
                            BindingResult validationResult,
                            RedirectAttributes attributes) {
         if (validationResult.hasFieldErrors()) {
-            attributes.addFlashAttribute("errors", validationResult.getFieldErrors());
+            var list = validationResult.getFieldErrors();
+            attributes.addFlashAttribute("errors", list);
             return "redirect:/registration";
         }
         if (userService.checkUser(form)) {
@@ -239,7 +240,8 @@ public class FrontendController {
 
 
         if (!userRepo.existsByEmail(email)) {
-            attributes.addFlashAttribute("errorText", "Entered email does not exist!");
+            String errorText = "";
+            attributes.addFlashAttribute("errorText", errorText);
             return "redirect:/forgot-password";
         }
 
@@ -268,8 +270,9 @@ public class FrontendController {
                                           @RequestParam("newPassword") String newPassword,
                                           RedirectAttributes attributes) {
         if (!reserRepo.existsByToken(token)) {
-            attributes.addFlashAttribute("errorText", "Entered email does not exist!");
-            return "redirect:/reset-password";
+            String errorText = "";
+            attributes.addFlashAttribute("errorText", errorText);
+            return "redirect:/forgot-password";
         }
         PasswordResetToken pToken = reserRepo.findByToken(token).get();
         User user = userRepo.findById(pToken.getUser().getId()).get();

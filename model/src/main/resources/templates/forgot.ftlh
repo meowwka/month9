@@ -12,7 +12,7 @@
         </#if>
         <#if errorText?? >
             <div>
-                <p style="color: red">${errorText!'-- no message --'}</p>
+                <p style="color: red"><@spring.message "error-email" /></p>
             </div>
         </#if>
 
